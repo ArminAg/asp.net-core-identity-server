@@ -11,11 +11,19 @@ namespace asp.net_core_identity_server
 {
     public static class Config
     {
+        public static IEnumerable<IdentityResource> GetIdentityResources()
+        {
+            return new List<IdentityResource>
+            {
+                new IdentityResources.OpenId(),
+                new IdentityResources.Profile(),
+            };
+        }
+
         public static IEnumerable<ApiResource> GetApiResources()
         {
             return new List<ApiResource>
             {
-                // new ApiResource("api1", "My API")
                 new ApiResource("administrationApi", "Administration Api")
             };
         }
