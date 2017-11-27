@@ -15,6 +15,8 @@ namespace asp.net_core_identity_server
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddMvc();
+
             // AddIdentityServer registers the IdentityServer services in DI. It also registers an in-memory store for runtime state.
             services.AddIdentityServer()
                 // The extension creates temporary key material for signing tokens.
@@ -36,6 +38,10 @@ namespace asp.net_core_identity_server
             }
 
             app.UseIdentityServer();
+
+            app.UseMvcWithDefaultRoute();
+
+            app.UseMvc();
         }
     }
 }
