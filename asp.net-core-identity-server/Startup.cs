@@ -20,7 +20,11 @@ namespace asp.net_core_identity_server
                 // The extension creates temporary key material for signing tokens.
                 .AddDeveloperSigningCredential()
                 .AddInMemoryApiResources(Config.GetApiResources())
-                .AddInMemoryClients(Config.GetClients());
+                .AddInMemoryClients(Config.GetClients())
+                // Adds support for the resource owner password grant.
+                // Adds support to user related services typically used by a login UI.
+                // Adds support for a profile service based on the test users.
+                .AddTestUsers(Config.GetUsers());
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
