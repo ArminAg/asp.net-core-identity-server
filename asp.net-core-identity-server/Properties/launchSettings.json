@@ -17,11 +17,10 @@
     },
     "asp.net_core_identity_server": {
       "commandName": "Project",
-      "launchBrowser": true,
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
-      "applicationUrl": "http://localhost:55917/"
+      "applicationUrl": "http://localhost:5000/"
     }
   }
 }
