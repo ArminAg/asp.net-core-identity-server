@@ -23,7 +23,19 @@ namespace asp.net_core_api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc();
+            services.AddMvcCore()
+                .AddAuthorization()
+                .AddJsonFormatters();
+
+            // Adds the authentication services to DI and configures "Bearer" as the default scheme.
+            services.AddAuthentication("Bearer")
+                // Adds the IdentityServer access token validation handler into DI for use by the authentication services.
+                .AddIdentityServerAuthentication(options =>
+                {
+                    options.Authority = "http:localhost:50000";
+                    options.RequireHttpsMetadata = false;
+                    options.ApiName = "administrationApi";
+                });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -33,6 +45,9 @@ namespace asp.net_core_api
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            // Adds the authentication middleware to the pipeline so authentication will be performed automatically on every call into the host.
+            app.UseAuthentication();
 
             app.UseMvc();
         }
