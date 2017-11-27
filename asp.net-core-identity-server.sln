@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "asp.net-core-identity-serve
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "asp.net-core-api", "asp.net-core-api\asp.net-core-api.csproj", "{56EB21E3-82E7-4C6C-9E4C-96F1FA32103E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "asp.net-core-client", "asp.net-core-client\asp.net-core-client.csproj", "{130CA916-E9F2-4108-8A39-95B28C514465}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{56EB21E3-82E7-4C6C-9E4C-96F1FA32103E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{56EB21E3-82E7-4C6C-9E4C-96F1FA32103E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{56EB21E3-82E7-4C6C-9E4C-96F1FA32103E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{130CA916-E9F2-4108-8A39-95B28C514465}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{130CA916-E9F2-4108-8A39-95B28C514465}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{130CA916-E9F2-4108-8A39-95B28C514465}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{130CA916-E9F2-4108-8A39-95B28C514465}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
