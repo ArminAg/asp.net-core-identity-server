@@ -14,7 +14,7 @@ namespace asp.net_core_client
         private static async Task MainAsync()
         {
             // discover endpoints from metadata
-            var disco = await DiscoveryClient.GetAsync("http://localhost:50000");
+            var disco = await DiscoveryClient.GetAsync("http://localhost:5000");
             if (disco.IsError)
             {
                 Console.WriteLine(disco.Error);
@@ -38,7 +38,7 @@ namespace asp.net_core_client
             var client = new HttpClient();
             client.SetBearerToken(tokenResponse.AccessToken);
 
-            var response = await client.GetAsync("http://localhost:50001/identity");
+            var response = await client.GetAsync("http://localhost:5001/identity");
             if (!response.IsSuccessStatusCode)
             {
                 Console.WriteLine(response.StatusCode);

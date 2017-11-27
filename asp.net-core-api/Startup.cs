@@ -32,7 +32,7 @@ namespace asp.net_core_api
                 // Adds the IdentityServer access token validation handler into DI for use by the authentication services.
                 .AddIdentityServerAuthentication(options =>
                 {
-                    options.Authority = "http:localhost:50000";
+                    options.Authority = "http://localhost:5000";
                     options.RequireHttpsMetadata = false;
                     options.ApiName = "administrationApi";
                 });

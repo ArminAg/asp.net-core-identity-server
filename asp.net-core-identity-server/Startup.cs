@@ -32,11 +32,6 @@ namespace asp.net_core_identity_server
             }
 
             app.UseIdentityServer();
-
-            app.Run(async (context) =>
-            {
-                await context.Response.WriteAsync("Hello World!");
-            });
         }
     }
 }
