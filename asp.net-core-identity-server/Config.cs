@@ -34,6 +34,16 @@ namespace asp.net_core_identity_server
                     },
                     // Scopes that client has access to
                     AllowedScopes = { "administrationApi" }
+                },
+                new Client
+                {
+                    ClientId = "resourceOwner",
+                    AllowedGrantTypes = GrantTypes.ResourceOwnerPassword,
+                    ClientSecrets =
+                    {
+                        new Secret("secret".Sha256())
+                    },
+                    AllowedScopes = { "administrationApi" }
                 }
             };
         }
