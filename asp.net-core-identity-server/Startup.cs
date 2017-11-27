@@ -18,7 +18,9 @@ namespace asp.net_core_identity_server
             // AddIdentityServer registers the IdentityServer services in DI. It also registers an in-memory store for runtime state.
             services.AddIdentityServer()
                 // The extension creates temporary key material for signing tokens.
-                .AddDeveloperSigningCredential();
+                .AddDeveloperSigningCredential()
+                .AddInMemoryApiResources(Config.GetApiResources())
+                .AddInMemoryClients(Config.GetClients());
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
