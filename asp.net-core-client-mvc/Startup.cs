@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using System.IdentityModel.Tokens.Jwt;
 
 namespace asp.net_core_client_mvc
 {
@@ -22,6 +23,32 @@ namespace asp.net_core_client_mvc
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+
+            // Turn off the JWT claim type mapping to allow well-known claims (e.g 'sub' and 'idp') to flow through unmolested.
+            JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
+
+            // Adds the authentication services to DI
+            // Here we are using a cookie as the primary means to authenticate a user.
+            services.AddAuthentication(options =>
+            {
+                options.DefaultScheme = "Cookies";
+                options.DefaultChallengeScheme = "oidc";
+            })
+            // Add the handler that can process cookies
+            .AddCookie("Cookies")
+            // Used to configure the handler that perform the OpenID Connect protocol.
+            .AddOpenIdConnect("oidc", options =>
+            {
+                // Used to persist the tokens from IdentityServer in the cookie
+                options.SignInScheme = "Cookies";
+
+                // Indicates that we are trusting IdentityServer
+                options.Authority = "http://localhost:5000";
+                options.RequireHttpsMetadata = false;
+
+                options.ClientId = "mvc";
+                options.SaveTokens = true;
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -36,6 +63,9 @@ namespace asp.net_core_client_mvc
             {
                 app.UseExceptionHandler("/Error");
             }
+
+            // Ensure the authentication services execute on each request.
+            app.UseAuthentication();
 
             app.UseStaticFiles();
 
