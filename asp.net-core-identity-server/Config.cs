@@ -1,4 +1,5 @@
 ﻿using IdentityModel;
+using IdentityServer4;
 using IdentityServer4.Models;
 using IdentityServer4.Test;
 using System;
@@ -54,6 +55,21 @@ namespace asp.net_core_identity_server
                         new Secret("secret".Sha256())
                     },
                     AllowedScopes = { "administrationApi" }
+                },
+                new Client
+                {
+                    ClientId = "mvc",
+                    ClientName = "Mvc Client",
+                    AllowedGrantTypes = GrantTypes.Implicit,
+                    // Where to redirect to after login
+                    RedirectUris = { "http://localhost:5002/signin-oidc" },
+                    // Where to redirect after logout
+                    PostLogoutRedirectUris = { "http://localhost:5002/signout-callback-oidc" },
+                    AllowedScopes = new List<string>
+                    {
+                        IdentityServerConstants.StandardScopes.OpenId,
+                        IdentityServerConstants.StandardScopes.Profile
+                    }
                 }
             };
         }

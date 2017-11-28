@@ -45,7 +45,7 @@ namespace asp.net_core_client_mvc
                 // Indicates that we are trusting IdentityServer
                 options.Authority = "http://localhost:5000";
                 options.RequireHttpsMetadata = false;
-
+                
                 options.ClientId = "mvc";
                 options.SaveTokens = true;
             });
@@ -69,11 +69,12 @@ namespace asp.net_core_client_mvc
 
             app.UseStaticFiles();
 
+            app.UseMvcWithDefaultRoute();
+
             app.UseMvc(routes =>
             {
-                routes.MapRoute(
-                    name: "default",
-                    template: "{controller}/{action=Index}/{id?}");
+                routes.MapRoute("signin-oidc", "signin-oidc", defaults: new { controller = "Home", action = "Account"});
+                routes.MapRoute("signout-callback-oidc", "signout-callback-oidc", defaults: new { controller = "Home", action = "Logout" });
             });
         }
     }

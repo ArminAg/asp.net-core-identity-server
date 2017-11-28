@@ -21,6 +21,7 @@ namespace asp.net_core_identity_server
             services.AddIdentityServer()
                 // The extension creates temporary key material for signing tokens.
                 .AddDeveloperSigningCredential()
+                .AddInMemoryIdentityResources(Config.GetIdentityResources())
                 .AddInMemoryApiResources(Config.GetApiResources())
                 .AddInMemoryClients(Config.GetClients())
                 // Adds support for the resource owner password grant.
@@ -38,6 +39,8 @@ namespace asp.net_core_identity_server
             }
 
             app.UseIdentityServer();
+
+            app.UseStaticFiles();
 
             app.UseMvcWithDefaultRoute();
 
