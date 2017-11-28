@@ -8,7 +8,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
-namespace asp.net_core_identity_server
+namespace asp.net_core_identity_server_with_identity
 {
     public static class Config
     {

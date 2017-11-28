@@ -37,6 +37,17 @@ namespace asp.net_core_identity_server_with_identity
             services.AddTransient<IEmailSender, EmailSender>();
 
             services.AddMvc();
+
+            // Configure Identity Server with in-memory stores, keys, clients and scopes
+            // It's important when using Asp.Net Identity that IdentityServer is registered after Asp.Net Identity
+            // in the DI system because IdentityServer is overwriting some configuration from Asp.Net Identity
+            services.AddIdentityServer()
+                .AddDeveloperSigningCredential()
+                .AddInMemoryPersistedGrants()
+                .AddInMemoryIdentityResources(Config.GetIdentityResources())
+                .AddInMemoryApiResources(Config.GetApiResources())
+                .AddInMemoryClients(Config.GetClients())
+                .AddAspNetIdentity<ApplicationUser>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -55,7 +66,8 @@ namespace asp.net_core_identity_server_with_identity
 
             app.UseStaticFiles();
 
-            app.UseAuthentication();
+            // app.UseAuthentication(); // Not needed, since UseIdentityServer adds the authentication middleware
+            app.UseIdentityServer();
 
             app.UseMvc(routes =>
             {
