@@ -79,6 +79,24 @@ namespace asp.net_core_identity_server_with_identity
                     },
                     // This allows requesting refresh tokens for long lived Api access
                     AllowOfflineAccess = true
+                },
+                new Client
+                {
+                    ClientId = "js",
+                    ClientName = "Javascript Client",
+                    AllowedGrantTypes = GrantTypes.Implicit,
+                    AllowAccessTokensViaBrowser = true,
+
+                    RedirectUris = { "http://localhost:5003/callback.html" },
+                    PostLogoutRedirectUris = { "http://localhost:5003/index.html" },
+                    AllowedCorsOrigins = { "http://localhost:5003" },
+
+                    AllowedScopes =
+                    {
+                        IdentityServerConstants.StandardScopes.OpenId,
+                        IdentityServerConstants.StandardScopes.Profile,
+                        "administrationApi"
+                    }
                 }
             };
         }
