@@ -15,6 +15,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "asp.net-core-client-mvc", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "asp.net-core-identity-server-with-identity", "asp.net-core-identity-server-with-identity\asp.net-core-identity-server-with-identity.csproj", "{9D6CBEBE-2F18-4EE9-92FC-CC19316454C9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "asp.net-core-client-javascript", "asp.net-core-client-javascript\asp.net-core-client-javascript.csproj", "{77D319B3-1F17-44D9-8C56-7344D6F943EE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,10 @@ Global
 		{9D6CBEBE-2F18-4EE9-92FC-CC19316454C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9D6CBEBE-2F18-4EE9-92FC-CC19316454C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9D6CBEBE-2F18-4EE9-92FC-CC19316454C9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{77D319B3-1F17-44D9-8C56-7344D6F943EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{77D319B3-1F17-44D9-8C56-7344D6F943EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{77D319B3-1F17-44D9-8C56-7344D6F943EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{77D319B3-1F17-44D9-8C56-7344D6F943EE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
