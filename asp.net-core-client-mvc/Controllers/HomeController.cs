@@ -28,5 +28,10 @@ namespace asp.net_core_client_mvc.Controllers
             await HttpContext.SignOutAsync("Cookies");
             await HttpContext.SignOutAsync("oidc");
         }
+
+        public IActionResult LoggedOut()
+        {
+            return View();
+        }
     }
 }

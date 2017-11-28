@@ -74,7 +74,7 @@ namespace asp.net_core_client_mvc
             app.UseMvc(routes =>
             {
                 routes.MapRoute("signin-oidc", "signin-oidc", defaults: new { controller = "Home", action = "Account"});
-                routes.MapRoute("signout-callback-oidc", "signout-callback-oidc", defaults: new { controller = "Home", action = "Logout" });
+                routes.MapRoute("signout-callback-oidc", "signout-callback-oidc", defaults: new { controller = "Home", action = "LoggedOut" });
             });
         }
     }
