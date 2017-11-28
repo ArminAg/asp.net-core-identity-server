@@ -89,6 +89,8 @@ namespace asp.net_core_identity_server_with_identity
 
                     RedirectUris = { "http://localhost:5003/callback.html" },
                     PostLogoutRedirectUris = { "http://localhost:5003/index.html" },
+                    RequireConsent = false,
+
                     AllowedCorsOrigins = { "http://localhost:5003" },
 
                     AllowedScopes =

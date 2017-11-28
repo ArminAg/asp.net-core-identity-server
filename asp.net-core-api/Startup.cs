@@ -36,6 +36,16 @@ namespace asp.net_core_api
                     options.RequireHttpsMetadata = false;
                     options.ApiName = "administrationApi";
                 });
+
+            services.AddCors(options =>
+            {
+                options.AddPolicy("default", policy =>
+                {
+                    policy.WithOrigins("http://localhost:5003")
+                        .AllowAnyHeader()
+                        .AllowAnyMethod();
+                });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -45,6 +55,8 @@ namespace asp.net_core_api
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseCors("default");
 
             // Adds the authentication middleware to the pipeline so authentication will be performed automatically on every call into the host.
             app.UseAuthentication();
