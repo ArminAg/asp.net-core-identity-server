@@ -11,8 +11,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using asp.net_core_identity_server_with_identity.Models;
-using asp.net_core_identity_server_with_identity.Models.ManageViewModels;
 using asp.net_core_identity_server_with_identity.Services;
+using asp.net_core_identity_server_with_identity.ViewModels.Manage;
 
 namespace asp.net_core_identity_server_with_identity.Controllers
 {
