@@ -60,7 +60,12 @@ namespace asp.net_core_identity_server
                 {
                     ClientId = "mvc",
                     ClientName = "Mvc Client",
-                    AllowedGrantTypes = GrantTypes.Implicit,
+                    // AllowedGrantTypes = GrantTypes.Implicit,
+                    AllowedGrantTypes = GrantTypes.HybridAndClientCredentials,
+                    ClientSecrets =
+                    {
+                        new Secret("secret".Sha256())
+                    },
                     // Where to redirect to after login
                     RedirectUris = { "http://localhost:5002/signin-oidc" },
                     // Where to redirect after logout
@@ -69,8 +74,11 @@ namespace asp.net_core_identity_server
                     AllowedScopes = new List<string>
                     {
                         IdentityServerConstants.StandardScopes.OpenId,
-                        IdentityServerConstants.StandardScopes.Profile
-                    }
+                        IdentityServerConstants.StandardScopes.Profile,
+                        "administrationApi"
+                    },
+                    // This allows requesting refresh tokens for long lived Api access
+                    AllowOfflineAccess = true
                 }
             };
         }
