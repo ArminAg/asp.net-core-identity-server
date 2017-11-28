@@ -12,3 +12,11 @@
         <dd>@claim.Value</dd>
     }
 </dl>
+
+<dt>access token</dt>
+<dd>@await ViewContext.HttpContext.GetTokenAsync("access_token")</dd>
+
+<dt>refresh token</dt>
+<dd>@await ViewContext.HttpContext.GetTokenAsync("refresh_token")</dd>
+
+<a asp-action="CallApiUsingUserAccessToken" asp-controller="Home">Call Api</a>

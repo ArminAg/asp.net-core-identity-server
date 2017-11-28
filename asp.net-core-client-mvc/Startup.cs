@@ -47,7 +47,19 @@ namespace asp.net_core_client_mvc
                 options.RequireHttpsMetadata = false;
                 
                 options.ClientId = "mvc";
+                // Has to match secret on Identity
+                options.ClientSecret = "secret";
+                // code id_token basically means "use hybrid flow"
+                options.ResponseType = "code id_token";
+
+                // The OpenID Connect middleware saves the tokens automatically for us
+                // Tokens are stored inside the properties section of the cookie.
+                // The easiest way to access them is by using extension methods from the Microsoft.AspNetCore.Authentication namespace
                 options.SaveTokens = true;
+                options.GetClaimsFromUserInfoEndpoint = true;
+
+                options.Scope.Add("administrationApi");
+                options.Scope.Add("offline_access");
             });
         }
 
