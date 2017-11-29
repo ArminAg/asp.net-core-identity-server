@@ -23,6 +23,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Api", "Api", "{1469E471-17E
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "IdentityServer4", "IdentityServer4", "{09FDC828-F3D8-431B-AFD0-6104D15D30A8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "asp.net-core-api-gateway", "asp.net-core-api-gateway\asp.net-core-api-gateway.csproj", "{28592BDA-6C4A-44F4-85F6-CA5A87DFD7BE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -57,6 +59,10 @@ Global
 		{77D319B3-1F17-44D9-8C56-7344D6F943EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{77D319B3-1F17-44D9-8C56-7344D6F943EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{77D319B3-1F17-44D9-8C56-7344D6F943EE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{28592BDA-6C4A-44F4-85F6-CA5A87DFD7BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{28592BDA-6C4A-44F4-85F6-CA5A87DFD7BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{28592BDA-6C4A-44F4-85F6-CA5A87DFD7BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{28592BDA-6C4A-44F4-85F6-CA5A87DFD7BE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -69,6 +75,7 @@ Global
 		{62AD19DA-EB1C-47CF-873C-0D6472EE09BD} = {BBA585BD-197B-4B50-A1B3-C4BD155EF327}
 		{9D6CBEBE-2F18-4EE9-92FC-CC19316454C9} = {09FDC828-F3D8-431B-AFD0-6104D15D30A8}
 		{77D319B3-1F17-44D9-8C56-7344D6F943EE} = {BBA585BD-197B-4B50-A1B3-C4BD155EF327}
+		{28592BDA-6C4A-44F4-85F6-CA5A87DFD7BE} = {1469E471-17E8-419B-A22C-545D24646E5F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8499EE74-62B6-4187-83DB-0C7CC35636BE}

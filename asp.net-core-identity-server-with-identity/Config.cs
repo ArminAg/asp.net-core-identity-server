@@ -70,7 +70,6 @@ namespace asp.net_core_identity_server_with_identity
                     RedirectUris = { "http://localhost:5002/signin-oidc" },
                     // Where to redirect after logout
                     PostLogoutRedirectUris = { "http://localhost:5002/signout-callback-oidc" },
-                    RequireConsent = false,
                     AllowedScopes = new List<string>
                     {
                         IdentityServerConstants.StandardScopes.OpenId,
@@ -89,7 +88,6 @@ namespace asp.net_core_identity_server_with_identity
 
                     RedirectUris = { "http://localhost:5003/callback.html" },
                     PostLogoutRedirectUris = { "http://localhost:5003/index.html" },
-                    RequireConsent = false,
 
                     AllowedCorsOrigins = { "http://localhost:5003" },
 
