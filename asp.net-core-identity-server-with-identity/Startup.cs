@@ -11,6 +11,7 @@ using Microsoft.Extensions.DependencyInjection;
 using asp.net_core_identity_server_with_identity.Data;
 using asp.net_core_identity_server_with_identity.Models;
 using asp.net_core_identity_server_with_identity.Services;
+using System.Reflection;
 
 namespace asp.net_core_identity_server_with_identity
 {
@@ -26,8 +27,10 @@ namespace asp.net_core_identity_server_with_identity
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            var connectionString = Configuration.GetConnectionString("DefaultConnection");
+
             services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+                options.UseSqlServer(connectionString));
 
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
@@ -37,16 +40,36 @@ namespace asp.net_core_identity_server_with_identity
             services.AddTransient<IEmailSender, EmailSender>();
 
             services.AddMvc();
+            
+            var migrationsAssembly = typeof(Startup).GetTypeInfo().Assembly.GetName().Name;
 
             // Configure Identity Server with in-memory stores, keys, clients and scopes
             // It's important when using Asp.Net Identity that IdentityServer is registered after Asp.Net Identity
             // in the DI system because IdentityServer is overwriting some configuration from Asp.Net Identity
             services.AddIdentityServer()
                 .AddDeveloperSigningCredential()
-                .AddInMemoryPersistedGrants()
-                .AddInMemoryIdentityResources(Config.GetIdentityResources())
-                .AddInMemoryApiResources(Config.GetApiResources())
-                .AddInMemoryClients(Config.GetClients())
+                //.AddInMemoryPersistedGrants()
+                //.AddInMemoryIdentityResources(Config.GetIdentityResources())
+                //.AddInMemoryApiResources(Config.GetApiResources())
+                //.AddInMemoryClients(Config.GetClients())
+                // This adds the config data from DB (clients, resources)
+                .AddConfigurationStore(options =>
+                {
+                    options.ConfigureDbContext = builder =>
+                        builder.UseSqlServer(connectionString,
+                            sql => sql.MigrationsAssembly(migrationsAssembly));
+                })
+                // This adds the operational data deom DB (codes, tokens, consents)
+                .AddOperationalStore(options =>
+                {
+                    options.ConfigureDbContext = builder =>
+                        builder.UseSqlServer(connectionString,
+                            sql => sql.MigrationsAssembly(migrationsAssembly));
+
+                    // This enables automatic token cleanup. this is optional
+                    options.EnableTokenCleanup = true;
+                    options.TokenCleanupInterval = 3600;
+                })
                 .AddAspNetIdentity<ApplicationUser>();
         }
 
