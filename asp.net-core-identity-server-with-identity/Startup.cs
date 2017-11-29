@@ -51,10 +51,6 @@ namespace asp.net_core_identity_server_with_identity
             // in the DI system because IdentityServer is overwriting some configuration from Asp.Net Identity
             services.AddIdentityServer()
                 .AddDeveloperSigningCredential()
-                //.AddInMemoryPersistedGrants()
-                //.AddInMemoryIdentityResources(Config.GetIdentityResources())
-                //.AddInMemoryApiResources(Config.GetApiResources())
-                //.AddInMemoryClients(Config.GetClients())
                 // This adds the config data from DB (clients, resources)
                 .AddConfigurationStore(options =>
                 {
@@ -62,7 +58,7 @@ namespace asp.net_core_identity_server_with_identity
                         builder.UseSqlServer(connectionString,
                             sql => sql.MigrationsAssembly(migrationsAssembly));
                 })
-                // This adds the operational data deom DB (codes, tokens, consents)
+                // This adds the operational data from DB (codes, tokens, consents)
                 .AddOperationalStore(options =>
                 {
                     options.ConfigureDbContext = builder =>
@@ -75,6 +71,14 @@ namespace asp.net_core_identity_server_with_identity
                 })
                 .AddAspNetIdentity<ApplicationUser>()
                 .AddExtensionGrantValidator<DelegationGrantValidator>();
+
+            services.AddAuthentication()
+                .AddJwtBearer(jwt =>
+                {
+                    jwt.Authority = "http://localhost:5000";
+                    jwt.RequireHttpsMetadata = false;
+                    jwt.Audience = "identityApi";
+                });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

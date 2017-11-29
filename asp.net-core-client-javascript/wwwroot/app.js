@@ -16,6 +16,7 @@ function log() {
 document.getElementById("login").addEventListener("click", login, false);
 document.getElementById("api").addEventListener("click", api, false);
 document.getElementById("gatewayApi").addEventListener("click", gatewayApi, false);
+document.getElementById("identityApi").addEventListener("click", identityApi, false);
 document.getElementById("logout").addEventListener("click", logout, false);
 
 var config = {
@@ -57,6 +58,20 @@ function api() {
 function gatewayApi() {
     mgr.getUser().then(function (user) {
         var url = "http://localhost:5005/data";
+
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", url);
+        xhr.onload = function () {
+            log(xhr.status, JSON.parse(xhr.responseText));
+        }
+        xhr.setRequestHeader("Authorization", "Bearer " + user.access_token);
+        xhr.send();
+    });
+}
+
+function identityApi() {
+    mgr.getUser().then(function (user) {
+        var url = "http://localhost:5005/identity";
 
         var xhr = new XMLHttpRequest();
         xhr.open("GET", url);

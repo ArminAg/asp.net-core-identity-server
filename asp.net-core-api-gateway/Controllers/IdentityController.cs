@@ -2,17 +2,18 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using IdentityModel.Client;
 using System.Net.Http;
+using IdentityModel.Client;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.Extensions.Primitives;
 
 namespace asp.net_core_api_gateway.Controllers
 {
-    [Route("data")]
+    [Route("identity")]
     [Authorize]
-    public class DataController : Controller
+    public class IdentityController : Controller
     {
         private const string AuthorizationRequestHeader = "Authorization";
 
@@ -23,7 +24,7 @@ namespace asp.net_core_api_gateway.Controllers
 
             var client = new HttpClient();
             client.SetBearerToken(tokenResponse.AccessToken);
-            var content = await client.GetStringAsync("http://localhost:5001/identity");
+            var content = await client.GetStringAsync("http://localhost:5000/api/usermanagement");
 
             return Json(content);
         }
@@ -52,7 +53,7 @@ namespace asp.net_core_api_gateway.Controllers
 
             var client = new TokenClient(disco.TokenEndpoint, "apiGateway.client", "secret");
 
-            return await client.RequestCustomGrantAsync("delegation", "administrationApi", payload);
+            return await client.RequestCustomGrantAsync("delegation", "identityApi", payload);
         }
     }
 }

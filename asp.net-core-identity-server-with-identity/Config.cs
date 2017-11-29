@@ -26,7 +26,8 @@ namespace asp.net_core_identity_server_with_identity
             return new List<ApiResource>
             {
                 new ApiResource("administrationApi", "Administration Api"),
-                new ApiResource("apiGateway", "Gateway Api")
+                new ApiResource("apiGateway", "Gateway Api"),
+                new ApiResource("identityApi", "Identity Api")
             };
         }
 
@@ -109,7 +110,8 @@ namespace asp.net_core_identity_server_with_identity
                     AllowedGrantTypes = { "delegation" },
                     AllowedScopes = new List<string>
                     {
-                        "administrationApi"
+                        "administrationApi",
+                        "identityApi"
                     }
                 }
             };
