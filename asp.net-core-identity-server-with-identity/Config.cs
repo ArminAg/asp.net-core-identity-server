@@ -97,6 +97,19 @@ namespace asp.net_core_identity_server_with_identity
                         IdentityServerConstants.StandardScopes.Profile,
                         "administrationApi"
                     }
+                },
+                new Client
+                {
+                    ClientId = "apiGateway.client",
+                    ClientSecrets = new List<Secret>
+                    {
+                        new Secret("secret".Sha256())
+                    },
+                    AllowedGrantTypes = { "delegation" },
+                    AllowedScopes = new List<string>
+                    {
+                        "administrationApi"
+                    }
                 }
             };
         }

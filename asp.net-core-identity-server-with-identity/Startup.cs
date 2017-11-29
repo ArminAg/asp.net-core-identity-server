@@ -14,6 +14,7 @@ using asp.net_core_identity_server_with_identity.Services;
 using System.Reflection;
 using IdentityServer4.EntityFramework.DbContexts;
 using IdentityServer4.EntityFramework.Mappers;
+using asp.net_core_identity_server_with_identity.Extensions;
 
 namespace asp.net_core_identity_server_with_identity
 {
@@ -72,7 +73,8 @@ namespace asp.net_core_identity_server_with_identity
                     options.EnableTokenCleanup = true;
                     options.TokenCleanupInterval = 3600;
                 })
-                .AddAspNetIdentity<ApplicationUser>();
+                .AddAspNetIdentity<ApplicationUser>()
+                .AddExtensionGrantValidator<DelegationGrantValidator>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
