@@ -5,14 +5,17 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using IdentityModel.Client;
 using System.Net.Http;
+using Microsoft.AspNetCore.Authorization;
 
 namespace asp.net_core_api_gateway.Controllers
 {
+    [Route("data")]
+    [Authorize]
     public class DataController : Controller
     {
         private const string AuthorizationRequestHeader = "Authorization";
 
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Get()
         {
             var userToken = "";
             var tokenResponse = await DelegateAsync(userToken);
@@ -24,7 +27,7 @@ namespace asp.net_core_api_gateway.Controllers
             return Json(content);
         }
 
-        public async Task<TokenResponse> DelegateAsync(string userToken)
+        private async Task<TokenResponse> DelegateAsync(string userToken)
         {
             var disco = await DiscoveryClient.GetAsync("http://localhost:5000");
             if (disco.IsError)

@@ -15,6 +15,7 @@ function log() {
 
 document.getElementById("login").addEventListener("click", login, false);
 document.getElementById("api").addEventListener("click", api, false);
+document.getElementById("gatewayApi").addEventListener("click", gatewayApi, false);
 document.getElementById("logout").addEventListener("click", logout, false);
 
 var config = {
@@ -22,7 +23,7 @@ var config = {
     client_id: "js",
     redirect_uri: "http://localhost:5003/callback.html",
     response_type: "id_token token",
-    scope: "openid profile administrationApi",
+    scope: "openid profile apiGateway",
     post_logout_redirect_uri: "http://localhost:5003/index.html",
 };
 var mgr = new Oidc.UserManager(config);
@@ -42,6 +43,20 @@ function login() {
 function api() {
     mgr.getUser().then(function (user) {
         var url = "http://localhost:5001/identity";
+
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", url);
+        xhr.onload = function () {
+            log(xhr.status, JSON.parse(xhr.responseText));
+        }
+        xhr.setRequestHeader("Authorization", "Bearer " + user.access_token);
+        xhr.send();
+    });
+}
+
+function gatewayApi() {
+    mgr.getUser().then(function (user) {
+        var url = "http://localhost:5005/data";
 
         var xhr = new XMLHttpRequest();
         xhr.open("GET", url);

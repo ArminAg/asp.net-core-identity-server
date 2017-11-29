@@ -25,7 +25,8 @@ namespace asp.net_core_identity_server_with_identity
         {
             return new List<ApiResource>
             {
-                new ApiResource("administrationApi", "Administration Api")
+                new ApiResource("administrationApi", "Administration Api"),
+                new ApiResource("apiGateway", "Gateway Api")
             };
         }
 
@@ -95,7 +96,7 @@ namespace asp.net_core_identity_server_with_identity
                     {
                         IdentityServerConstants.StandardScopes.OpenId,
                         IdentityServerConstants.StandardScopes.Profile,
-                        "administrationApi"
+                        "apiGateway",
                     }
                 },
                 new Client
